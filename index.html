@@ -837,6 +837,112 @@ footer {
   .hero-title { font-size: 60px; }
   .stats-inner { grid-template-columns: 1fr; }
 }
+
+/* ─── Curtain Reveal — Advanced Automation ─── */
+.curtain-section {
+  position: relative;
+  height: 280vh;
+  z-index: 5;
+}
+.curtain-sticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.curtain-panel {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  background: var(--cork);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.curtain-panel::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 8px);
+  pointer-events: none;
+}
+.curtain-panel-left {
+  left: 0;
+  justify-content: flex-end;
+  padding-right: 48px;
+  border-right: 2px solid rgba(0,0,0,0.2);
+  box-shadow: inset -8px 0 32px rgba(0,0,0,0.25);
+}
+.curtain-panel-right {
+  right: 0;
+  justify-content: flex-start;
+  padding-left: 48px;
+  border-left: 2px solid rgba(0,0,0,0.2);
+  box-shadow: inset 8px 0 32px rgba(0,0,0,0.25);
+}
+.curtain-word {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 10vw, 120px);
+  color: var(--text);
+  opacity: 0.18;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  user-select: none;
+}
+.curtain-content {
+  position: absolute; inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  background: var(--bg);
+}
+.curtain-content .section-label { margin-bottom: 12px; }
+.curtain-content .section-heading { margin-bottom: 20px; }
+.curtain-desc {
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 48ch;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.curtain-preview {
+  width: min(800px, 90%);
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,0,0,0.15);
+  margin-bottom: 32px;
+  background: #111;
+}
+.curtain-preview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+}
+.curtain-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  border-radius: 6px;
+  transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(204,34,0,0.35);
+}
+.curtain-cta-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 32px rgba(204,34,0,0.45); }
 </style>
 </head>
 <body>
@@ -987,6 +1093,29 @@ footer {
 </section>
 
 
+<!-- ADVANCED AUTOMATION CURTAIN REVEAL -->
+<section class="curtain-section" id="automation">
+  <div class="curtain-sticky">
+    <!-- Behind the curtain -->
+    <div class="curtain-content">
+      <div class="section-label">Advanced Automation</div>
+      <div class="section-heading">Next Level Work</div>
+      <p class="curtain-desc">A full client automation system built inside GoHighLevel — multi-step workflows, smart pipelines, and hands-free follow-up that runs 24/7.</p>
+      <div class="curtain-preview">
+        <iframe src="https://jimleverage.github.io/Jim/" title="Advanced Automation Preview" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <a class="curtain-cta-btn" href="https://jimleverage.github.io/Jim/" target="_blank" rel="noopener">View Full Site →</a>
+    </div>
+    <!-- Curtain panels -->
+    <div class="curtain-panel curtain-panel-left" id="curtainLeft">
+      <span class="curtain-word">ADVANCED</span>
+    </div>
+    <div class="curtain-panel curtain-panel-right" id="curtainRight">
+      <span class="curtain-word">AUTOMATION</span>
+    </div>
+  </div>
+</section>
+
 <!-- EXPERTISE -->
 <section class="section-wrap" id="expertise">
   <div class="section-spotlight"></div>
@@ -1099,6 +1228,31 @@ footer {
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
+
+// ─── Curtain Reveal ───
+(function() {
+  var section = document.querySelector('.curtain-section');
+  gsap.to('#curtainLeft', {
+    xPercent: -100,
+    ease: 'power2.inOut',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: '55% top',
+      scrub: 0.6
+    }
+  });
+  gsap.to('#curtainRight', {
+    xPercent: 100,
+    ease: 'power2.inOut',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: '55% top',
+      scrub: 0.6
+    }
+  });
+})();
 
 // ─── Cursor Glow ───
 (function() {
