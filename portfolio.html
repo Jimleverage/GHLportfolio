@@ -838,108 +838,65 @@ footer {
   .stats-inner { grid-template-columns: 1fr; }
 }
 
-/* ─── Curtain Reveal — Advanced Automation ─── */
-.curtain-section {
-  position: relative;
-  z-index: 5;
-}
-.curtain-sticky {
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.curtain-panel {
-  position: absolute;
-  inset: 0;
-  width: 50%;
+/* ─── Advanced Automation Board ─── */
+.automation-board {
   background: var(--cork);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+  border-radius: 20px;
+  padding: 48px 40px;
+  position: relative;
+  box-shadow: inset 0 2px 20px rgba(0,0,0,0.4);
 }
-.curtain-panel::after {
+.automation-board::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; border-radius: 20px;
   background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 8px);
   pointer-events: none;
 }
-.curtain-panel-left {
-  left: 0;
-  justify-content: flex-end;
-  padding-right: 48px;
-  border-right: 2px solid rgba(0,0,0,0.2);
-  box-shadow: inset -8px 0 32px rgba(0,0,0,0.25);
-}
-.curtain-panel-right {
-  right: 0;
-  justify-content: flex-start;
-  padding-left: 48px;
-  border-left: 2px solid rgba(0,0,0,0.2);
-  box-shadow: inset 8px 0 32px rgba(0,0,0,0.25);
-}
-.curtain-word {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(36px, 6vw, 72px);
-  color: var(--text);
-  opacity: 0.18;
-  letter-spacing: 0.04em;
-  line-height: 1;
-  user-select: none;
-}
-.curtain-content {
+.automation-note {
+  background: var(--note-color, #c8e6c4);
+  border-radius: 2px;
+  padding: 28px;
   position: relative;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 60px 24px;
-  width: 100%;
-  background: var(--bg);
+  transform: rotate(var(--rot, 0deg));
+  box-shadow: 3px 4px 18px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.15);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
 }
-.curtain-content .section-label { margin-bottom: 12px; }
-.curtain-content .section-heading { margin-bottom: 20px; }
-.curtain-desc {
-  font-size: 15px;
-  color: var(--muted);
-  max-width: 44ch;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-.curtain-preview {
-  width: min(480px, 85%);
+.auto-preview {
   aspect-ratio: 16/9;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.15);
-  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   background: #111;
 }
-.curtain-preview iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  pointer-events: none;
+.auto-preview iframe {
+  width: 100%; height: 100%;
+  border: none; pointer-events: none;
 }
-.curtain-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 36px;
+.auto-caption { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+.auto-desc {
+  font-size: 14px;
+  color: #2a2520;
+  line-height: 1.6;
+}
+.auto-cta {
+  display: inline-block;
+  padding: 10px 24px;
   background: var(--accent);
   color: #fff;
   text-decoration: none;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   letter-spacing: 0.08em;
-  border-radius: 6px;
-  transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(204,34,0,0.35);
+  border-radius: 4px;
+  align-self: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 12px rgba(204,34,0,0.3);
 }
-.curtain-cta-btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 8px 32px rgba(204,34,0,0.45); }
+.auto-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(204,34,0,0.4); }
+@media (max-width: 700px) { .automation-note { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -1090,25 +1047,27 @@ footer {
 </section>
 
 
-<!-- ADVANCED AUTOMATION CURTAIN REVEAL -->
-<section class="curtain-section" id="automation">
-  <div class="curtain-sticky">
-    <!-- Behind the curtain -->
-    <div class="curtain-content">
-      <div class="section-label">Advanced Automation</div>
-      <div class="section-heading">Next Level Work</div>
-      <p class="curtain-desc">A full client automation system built inside GoHighLevel — multi-step workflows, smart pipelines, and hands-free follow-up that runs 24/7.</p>
-      <div class="curtain-preview">
+<!-- ADVANCED AUTOMATION -->
+<section class="section-wrap" id="automation">
+  <div class="section-spotlight"></div>
+  <div class="section-label">Advanced Automation</div>
+  <div class="section-heading">Next Level Work</div>
+  <div class="automation-board">
+    <div class="automation-note" style="--note-color:#c8e6c4;--rot:-1deg">
+      <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#88cc66,#336622)"></div>
+      <div class="auto-preview">
         <iframe src="https://jimleverage.github.io/Jim/" title="Advanced Automation Preview" loading="lazy" scrolling="no"></iframe>
       </div>
-      <a class="curtain-cta-btn" href="https://jimleverage.github.io/Jim/" target="_blank" rel="noopener">View Full Site →</a>
-    </div>
-    <!-- Curtain panels -->
-    <div class="curtain-panel curtain-panel-left" id="curtainLeft">
-      <span class="curtain-word">ADVANCED</span>
-    </div>
-    <div class="curtain-panel curtain-panel-right" id="curtainRight">
-      <span class="curtain-word">AUTOMATION</span>
+      <div class="auto-caption">
+        <div class="auto-tags">
+          <span class="funnel-tag">n8n Workflows</span>
+          <span class="funnel-tag">Make.com</span>
+          <span class="funnel-tag">GoHighLevel</span>
+          <span class="funnel-tag">Zapier</span>
+        </div>
+        <p class="auto-desc">Multi-step automation systems, smart pipelines, and hands-free follow-up that runs 24/7 — built for real client results.</p>
+        <a class="auto-cta" href="https://jimleverage.github.io/Jim/" target="_blank" rel="noopener">View Full Site →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1225,22 +1184,6 @@ footer {
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
-
-// ─── Curtain Reveal (pinned — locks scroll until fully open) ───
-(function() {
-  var tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.curtain-sticky',
-      start: 'top top',
-      end: '+=70%',
-      scrub: 0.5,
-      pin: true,
-      anticipatePin: 1
-    }
-  });
-  tl.to('#curtainLeft',  { xPercent: -100, ease: 'power2.inOut' }, 0);
-  tl.to('#curtainRight', { xPercent:  100, ease: 'power2.inOut' }, 0);
-})();
 
 // ─── Cursor Glow ───
 (function() {
