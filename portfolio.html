@@ -287,6 +287,97 @@ nav.scrolled {
   line-height: 1; max-width: 700px;
 }
 
+/* ─── PROJECTS PHOTO GRID ─── */
+.projects-stage {
+  background: transparent;
+  position: relative;
+}
+.funnel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.funnel-card {
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+  transform: rotate(var(--frot, 0deg));
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
+}
+.funnel-card:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.02);
+  z-index: 10;
+}
+/* Photo print frame */
+.funnel-frame {
+  background: #fff;
+  padding: 10px 10px 48px;
+  box-shadow: 3px 4px 16px rgba(0,0,0,0.22), 6px 8px 32px rgba(0,0,0,0.12);
+  border-radius: 2px;
+  position: relative;
+}
+.funnel-frame::before {
+  content: '';
+  position: absolute; inset: 10px 10px 48px;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.07);
+  pointer-events: none; z-index: 2;
+}
+/* Tape strip at top */
+.funnel-tape {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  width: 64px; height: 20px;
+  background: rgba(255,255,240,0.7);
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  z-index: 3;
+}
+.funnel-screenshot {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover; object-position: top;
+  display: block;
+  background: #1a1814;
+  background-size: cover; background-position: top center;
+}
+/* Handwritten caption below photo */
+.funnel-caption {
+  padding: 10px 4px 4px;
+  text-align: center;
+}
+.funnel-industry {
+  font-family: 'Caveat', cursive;
+  font-size: 12px; font-weight: 600;
+  color: rgba(26,24,22,0.4);
+  margin-bottom: 2px; letter-spacing: 0.04em;
+}
+.funnel-name {
+  font-family: 'Caveat', cursive;
+  font-size: 20px; font-weight: 700;
+  color: #1a1714; line-height: 1.1;
+}
+/* Tags below the frame */
+.funnel-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 14px; justify-content: center;
+}
+.funnel-tag {
+  font-size: 10px; font-weight: 500; padding: 3px 10px;
+  border-radius: 3px;
+  background: rgba(26,24,22,0.08);
+  color: rgba(26,24,22,0.55);
+  border: 1px solid rgba(26,24,22,0.12);
+}
+.funnel-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; font-family: 'Caveat', cursive;
+  font-size: 15px; font-weight: 700;
+  color: #cc2200; text-decoration: none;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.25s, transform 0.25s;
+}
+.funnel-card:hover .funnel-cta { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) { .funnel-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+
 /* ─── ACCORDION SLIDER ─── */
 .accordion {
   display: flex; gap: 8px;
@@ -476,94 +567,120 @@ nav.scrolled {
 @media (max-width: 1024px) { .expertise-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .expertise-grid { grid-template-columns: 1fr; padding: 32px 20px; } }
 
-/* ─── MODAL ─── */
+/* ─── MODAL — STICKY NOTE ─── */
 .modal-backdrop {
   position: fixed; inset: 0; z-index: 200;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(80,65,50,0.6);
+  backdrop-filter: blur(5px);
   display: flex; align-items: center; justify-content: center;
-  padding: 24px;
+  padding: 40px 24px;
   opacity: 0; pointer-events: none;
   transition: opacity 0.3s;
 }
 .modal-backdrop.open { opacity: 1; pointer-events: all; }
 .modal {
-  background: #1c1a17;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
-  max-width: 640px; width: 100%;
-  max-height: 88vh; overflow-y: auto;
-  padding: 48px;
+  background: var(--modal-color, #f5e642);
+  border-radius: 2px;
+  max-width: 560px; width: 100%;
+  max-height: 86vh; overflow-y: auto;
+  padding: 52px 36px 32px;
   position: relative;
-  transform: translateY(20px) scale(0.97);
-  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  transform: rotate(-2deg) scale(0.9) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 4px 8px 24px rgba(0,0,0,0.4), 10px 16px 48px rgba(0,0,0,0.2);
 }
-.modal-backdrop.open .modal { transform: translateY(0) scale(1); }
+/* Folded corner */
+.modal::after {
+  content: '';
+  position: absolute; bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 0 32px 32px;
+  border-color: transparent transparent rgba(0,0,0,0.15) transparent;
+  pointer-events: none;
+}
+.modal-backdrop.open .modal { transform: rotate(-0.5deg) scale(1) translateY(0); }
+/* Pushpin */
+.modal-pin {
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  width: 34px; height: 34px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ff6644, #aa2200);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,200,180,0.5);
+  z-index: 3;
+}
+.modal-pin::after {
+  content: '';
+  position: absolute; bottom: -9px; left: 50%; transform: translateX(-50%);
+  width: 6px; height: 11px;
+  background: linear-gradient(to bottom, #884422, #553311);
+  border-radius: 0 0 4px 4px;
+}
 .modal-close {
-  position: absolute; top: 20px; right: 20px;
-  width: 36px; height: 36px;
-  border: 1px solid var(--border); border-radius: 8px;
-  background: transparent; color: var(--muted);
-  font-size: 18px; cursor: pointer; line-height: 1;
+  position: absolute; top: 12px; right: 14px;
+  width: 26px; height: 26px;
+  border: 1.5px solid rgba(26,24,22,0.25); border-radius: 50%;
+  background: rgba(26,24,22,0.07); color: rgba(26,24,22,0.45);
+  font-size: 13px; cursor: pointer; line-height: 1;
   display: flex; align-items: center; justify-content: center;
-  transition: border-color 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
-.modal-close:hover { border-color: var(--text); color: var(--text); }
+.modal-close:hover { background: rgba(26,24,22,0.18); color: rgba(26,24,22,0.9); }
 .modal-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: var(--accent);
-  letter-spacing: 0.2em; margin-bottom: 12px;
-  filter: brightness(1.3);
+  font-family: 'Caveat', cursive;
+  font-size: 14px; font-weight: 600;
+  color: rgba(26,24,22,0.38);
+  margin-bottom: 4px;
 }
 .modal h2 {
-  font-size: clamp(22px, 3vw, 32px); font-weight: 800;
-  letter-spacing: -0.025em; color: #e8e4da;
-  margin-bottom: 16px; line-height: 1.1;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(26px, 4vw, 38px); font-weight: 700;
+  color: #1a1714; margin-bottom: 12px; line-height: 1.05;
 }
 .modal-tagline {
-  font-size: 15px; color: #8a8480;
-  line-height: 1.65; margin-bottom: 32px;
-  padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px; color: rgba(26,24,22,0.62);
+  line-height: 1.65; margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px dashed rgba(26,24,22,0.22);
 }
 .modal-section-title {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 16px;
+  font-family: 'Caveat', cursive;
+  font-size: 15px; font-weight: 700;
+  color: rgba(26,24,22,0.45);
+  margin-bottom: 10px;
 }
 .modal-list {
-  list-style: none; display: flex; flex-direction: column; gap: 12px;
-  margin-bottom: 32px;
+  list-style: none; display: flex; flex-direction: column; gap: 9px;
+  margin-bottom: 20px;
 }
 .modal-list li {
-  display: flex; gap: 12px; align-items: flex-start;
-  font-size: 14px; color: rgba(240,237,232,0.8); line-height: 1.55;
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; color: rgba(26,24,22,0.82); line-height: 1.55;
 }
 .modal-list li::before {
-  content: '→';
-  color: var(--accent); font-size: 12px;
-  flex-shrink: 0; margin-top: 2px;
+  content: '✓';
+  color: #cc2200; font-size: 13px; font-weight: 700;
+  flex-shrink: 0; margin-top: 1px;
 }
 .modal-outcome {
-  background: rgba(79,143,255,0.06);
-  border: 1px solid rgba(79,143,255,0.15);
-  border-radius: 12px; padding: 20px 24px;
-  margin-bottom: 28px;
+  background: rgba(26,24,22,0.08);
+  border: 1.5px dashed rgba(26,24,22,0.22);
+  border-radius: 3px; padding: 14px 18px;
+  margin-bottom: 22px;
 }
-.modal-outcome p {
-  font-size: 14px; color: rgba(240,237,232,0.75); line-height: 1.6;
-}
-.modal-outcome strong { color: var(--accent); font-weight: 600; }
+.modal-outcome p { font-size: 13px; color: rgba(26,24,22,0.72); line-height: 1.6; }
+.modal-outcome strong { color: #cc2200; font-weight: 700; }
 .modal-cta {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 28px;
-  background: var(--accent); color: var(--bg);
-  border-radius: 4px; text-decoration: none;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
-  transition: opacity 0.2s;
-  box-shadow: 0 4px 16px rgba(232,197,71,0.3);
+  padding: 10px 24px;
+  background: #1a1714; color: #e8e4da;
+  border-radius: 2px; text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.35);
 }
-.modal-cta:hover { opacity: 0.88; }
+.modal-cta:hover { opacity: 0.82; transform: translateY(-1px); }
 
 /* ─── STATS ─── */
 .stats-section {
@@ -784,90 +901,79 @@ footer {
 </section>
 
 <!-- PROJECTS -->
-<section class="section-wrap" id="projects">
+<section id="projects" class="section-wrap projects-stage">
   <div class="section-spotlight"></div>
   <div class="section-label">Portfolio</div>
   <div class="section-heading">Live Funnel Systems</div>
-  <div class="accordion" id="accordion">
 
-    <div class="accordion-panel" data-href="https://jimleverage.github.io/toniandguy-bahrain/">
-      <div class="panel-bg" style="background-image: url('https://s0.wp.com/mshots/v1/https%3A%2F%2Fjimleverage.github.io%2Ftoniandguy-bahrain%2F?w=1200&h=900');"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-side-label">Toni &amp; Guy</div>
-      <div class="panel-content">
-        <div class="panel-industry">Hair &amp; Beauty Salon</div>
-        <h3>Toni &amp; Guy Bahrain</h3>
-        <p>Full website and funnel with automated lead nurturing, CRM pipeline, and email sequences for customer engagement.</p>
-        <div class="panel-tags">
-          <span class="panel-tag">Full Funnel</span>
-          <span class="panel-tag">CRM Pipeline</span>
-          <span class="panel-tag">Email Automation</span>
-          <span class="panel-tag">Lead Nurturing</span>
-        </div>
-        <a class="panel-link" href="https://jimleverage.github.io/toniandguy-bahrain/" target="_blank" rel="noopener">View Live Funnel →</a>
-      </div>
-    </div>
+  <div class="funnel-grid">
 
-    <div class="accordion-panel" data-href="https://jimleverage.github.io/petland-bahrain/">
-      <div class="panel-bg" style="background-image: url('https://s0.wp.com/mshots/v1/https%3A%2F%2Fjimleverage.github.io%2Fpetland-bahrain%2F?w=1200&h=900');"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-side-label">Petland</div>
-      <div class="panel-content">
-        <div class="panel-industry">Pet &amp; Retail Store</div>
-        <h3>Petland Bahrain</h3>
-        <p>Complete lead generation funnel with CRM pipelines, engagement workflows, and targeted email campaigns for retention.</p>
-        <div class="panel-tags">
-          <span class="panel-tag">Lead Capture</span>
-          <span class="panel-tag">Automation Workflows</span>
-          <span class="panel-tag">Email Campaigns</span>
-          <span class="panel-tag">CRM Stages</span>
+    <!-- Card 1 -->
+    <a class="funnel-card" href="https://jimleverage.github.io/toniandguy-bahrain/" target="_blank" rel="noopener" style="--frot:-2deg">
+      <div class="funnel-frame">
+        <div class="funnel-tape"></div>
+        <div class="funnel-screenshot" style="background-image:url('https://s0.wp.com/mshots/v1/https%3A%2F%2Fjimleverage.github.io%2Ftoniandguy-bahrain%2F?w=1200&h=900')"></div>
+        <div class="funnel-caption">
+          <div class="funnel-industry">Hair &amp; Beauty · Bahrain</div>
+          <div class="funnel-name">Toni &amp; Guy Bahrain</div>
         </div>
-        <a class="panel-link" href="https://jimleverage.github.io/petland-bahrain/" target="_blank" rel="noopener">View Live Funnel →</a>
       </div>
-    </div>
+      <div class="funnel-tags">
+        <span class="funnel-tag">Full Funnel</span>
+        <span class="funnel-tag">CRM Pipeline</span>
+        <span class="funnel-tag">Email Automation</span>
+        <span class="funnel-tag">Lead Nurturing</span>
+      </div>
+      <div style="text-align:center">
+        <span class="funnel-cta">View Live Site →</span>
+      </div>
+    </a>
 
-    <div class="accordion-panel" data-href="https://jimleverage.github.io/Topaz-Detailing/">
-      <div class="panel-bg" style="background-image: url('https://s0.wp.com/mshots/v1/https%3A%2F%2Fjimleverage.github.io%2FTopaz-Detailing%2F?w=1200&h=900');"></div>
-      <div class="panel-overlay"></div>
-      <div class="panel-side-label">Topaz</div>
-      <div class="panel-content">
-        <div class="panel-industry">Auto Detailing</div>
-        <h3>Topaz Detailing</h3>
-        <p>High-converting service funnel with booking automation, follow-up workflows, and promotional email campaigns.</p>
-        <div class="panel-tags">
-          <span class="panel-tag">Booking Automation</span>
-          <span class="panel-tag">Follow-up System</span>
-          <span class="panel-tag">Promo Campaigns</span>
-          <span class="panel-tag">Service Funnel</span>
+    <!-- Card 2 -->
+    <a class="funnel-card" href="https://jimleverage.github.io/petland-bahrain/" target="_blank" rel="noopener" style="--frot:1.5deg">
+      <div class="funnel-frame">
+        <div class="funnel-tape"></div>
+        <div class="funnel-screenshot" style="background-image:url('https://s0.wp.com/mshots/v1/https%3A%2F%2Fjimleverage.github.io%2Fpetland-bahrain%2F?w=1200&h=900')"></div>
+        <div class="funnel-caption">
+          <div class="funnel-industry">Pet &amp; Retail · Bahrain</div>
+          <div class="funnel-name">Petland Bahrain</div>
         </div>
-        <a class="panel-link" href="https://jimleverage.github.io/Topaz-Detailing/" target="_blank" rel="noopener">View Live Funnel →</a>
       </div>
-    </div>
+      <div class="funnel-tags">
+        <span class="funnel-tag">Lead Capture</span>
+        <span class="funnel-tag">Automation Workflows</span>
+        <span class="funnel-tag">Email Campaigns</span>
+        <span class="funnel-tag">CRM Stages</span>
+      </div>
+      <div style="text-align:center">
+        <span class="funnel-cta">View Live Site →</span>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a class="funnel-card" href="https://jimleverage.github.io/Topaz-Detailing/" target="_blank" rel="noopener" style="--frot:-1deg">
+      <div class="funnel-frame">
+        <div class="funnel-tape"></div>
+        <div class="funnel-screenshot" style="background-image:url('https://s0.wp.com/mshots/v1/https%3A%2F%2Fjimleverage.github.io%2FTopaz-Detailing%2F?w=1200&h=900')"></div>
+        <div class="funnel-caption">
+          <div class="funnel-industry">Auto Detailing · Service</div>
+          <div class="funnel-name">Topaz Detailing</div>
+        </div>
+      </div>
+      <div class="funnel-tags">
+        <span class="funnel-tag">Booking Automation</span>
+        <span class="funnel-tag">Follow-up System</span>
+        <span class="funnel-tag">Promo Campaigns</span>
+        <span class="funnel-tag">Service Funnel</span>
+      </div>
+      <div style="text-align:center">
+        <span class="funnel-cta">View Live Site →</span>
+      </div>
+    </a>
 
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats-section">
-  <div class="stats-inner">
-    <div class="stat-cell">
-      <div class="stat-num" data-count="3">0</div>
-      <div class="stat-label">Live Funnels Built</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num" data-count="10">0</div>
-      <div class="stat-label">Automations Deployed</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num" data-count="3">0</div>
-      <div class="stat-label">Industries Served</div>
-    </div>
-    <div class="stat-cell">
-      <div class="stat-num" data-count="100">0</div>
-      <div class="stat-label">% Automation Focus</div>
-    </div>
-  </div>
-</section>
 
 <!-- EXPERTISE -->
 <section class="section-wrap" id="expertise">
@@ -929,6 +1035,7 @@ footer {
 <!-- MODAL -->
 <div class="modal-backdrop" id="modalBackdrop">
   <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-pin" id="modalPin"></div>
     <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
     <div id="modalBody"></div>
   </div>
@@ -1224,9 +1331,27 @@ window.addEventListener('scroll', function() {
   var modalBody = document.getElementById('modalBody');
   var closeBtn = document.getElementById('modalClose');
 
+  // Note colors matching each card
+  var noteColors = { 1:'#f5e642', 2:'#b8d4ee', 3:'#f0b8c8', 4:'#c8e6c4', 5:'#f5e642', 6:'#b8d4ee' };
+  var pinColors  = {
+    1:'radial-gradient(circle at 35% 35%,#ff6644,#aa2200)',
+    2:'radial-gradient(circle at 35% 35%,#6699dd,#334488)',
+    3:'radial-gradient(circle at 35% 35%,#cc6688,#882244)',
+    4:'radial-gradient(circle at 35% 35%,#66bb66,#224422)',
+    5:'radial-gradient(circle at 35% 35%,#ff6644,#aa2200)',
+    6:'radial-gradient(circle at 35% 35%,#6699dd,#334488)'
+  };
+
+  var modal = document.getElementById('modal');
+  var modalPin = document.getElementById('modalPin');
+
   function openModal(id) {
     var d = data[id];
     if (!d) return;
+    // Match note color to the clicked card
+    modal.style.setProperty('--modal-color', noteColors[id] || '#f5e642');
+    modal.style.background = noteColors[id] || '#f5e642';
+    modalPin.style.background = pinColors[id] || pinColors[1];
     var whatsHtml = d.what.map(function(w) { return '<li>' + w + '</li>'; }).join('');
     modalBody.innerHTML =
       '<div class="modal-num">' + d.num + '</div>' +
