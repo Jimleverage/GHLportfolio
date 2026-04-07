@@ -841,12 +841,9 @@ footer {
 /* ─── Curtain Reveal — Advanced Automation ─── */
 .curtain-section {
   position: relative;
-  height: 120vh;
   z-index: 5;
 }
 .curtain-sticky {
-  position: sticky;
-  top: 0;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -1229,29 +1226,20 @@ footer {
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Curtain Reveal ───
+// ─── Curtain Reveal (pinned — locks scroll until fully open) ───
 (function() {
-  var section = document.querySelector('.curtain-section');
-  gsap.to('#curtainLeft', {
-    xPercent: -100,
-    ease: 'power2.inOut',
+  var tl = gsap.timeline({
     scrollTrigger: {
-      trigger: section,
+      trigger: '.curtain-sticky',
       start: 'top top',
-      end: '55% top',
-      scrub: 0.6
+      end: '+=70%',
+      scrub: 0.5,
+      pin: true,
+      anticipatePin: 1
     }
   });
-  gsap.to('#curtainRight', {
-    xPercent: 100,
-    ease: 'power2.inOut',
-    scrollTrigger: {
-      trigger: section,
-      start: 'top top',
-      end: '55% top',
-      scrub: 0.6
-    }
-  });
+  tl.to('#curtainLeft',  { xPercent: -100, ease: 'power2.inOut' }, 0);
+  tl.to('#curtainRight', { xPercent:  100, ease: 'power2.inOut' }, 0);
 })();
 
 // ─── Cursor Glow ───
