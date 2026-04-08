@@ -1061,7 +1061,7 @@ footer {
   <div class="section-label">Expertise</div>
   <div class="section-heading">What I Build</div>
   <div class="expertise-grid" id="expertiseGrid">
-    <div class="expertise-card" data-modal="1" style="--note-color:#f5e642;--rot:-2deg">
+    <div class="expertise-card" onclick="openModal(1)" style="--note-color:#f5e642;--rot:-2deg">
       <div class="pushpin"></div>
       <div class="exp-icon">🖥️</div>
       <div class="exp-num">01 — Funnels</div>
@@ -1069,7 +1069,7 @@ footer {
       <p>Landing pages, multi-step funnels, and full websites built inside GHL — designed for conversion at every stage of the customer journey.</p>
       <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
-    <div class="expertise-card" data-modal="2" style="--note-color:#b8d4ee;--rot:1.5deg">
+    <div class="expertise-card" onclick="openModal(2)" style="--note-color:#b8d4ee;--rot:1.5deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#6699dd,#334488)"></div>
       <div class="exp-icon">📊</div>
       <div class="exp-num">02 — CRM</div>
@@ -1077,7 +1077,7 @@ footer {
       <p>Lead stages, opportunity tracking, and contact segmentation. Structured pipelines that give you full visibility over every deal.</p>
       <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
-    <div class="expertise-card" data-modal="3" style="--note-color:#f0b8c8;--rot:-1deg">
+    <div class="expertise-card" onclick="openModal(3)" style="--note-color:#f0b8c8;--rot:-1deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#cc6688,#882244)"></div>
       <div class="exp-icon">⚡</div>
       <div class="exp-num">03 — Automation</div>
@@ -1085,7 +1085,7 @@ footer {
       <p>Triggers, conditions, If/Else logic — fully automated follow-up systems that reduce manual work and keep leads moving forward.</p>
       <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
-    <div class="expertise-card" data-modal="4" style="--note-color:#c8e6c4;--rot:2deg">
+    <div class="expertise-card" onclick="openModal(4)" style="--note-color:#c8e6c4;--rot:2deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#66bb66,#224422)"></div>
       <div class="exp-icon">📧</div>
       <div class="exp-num">04 — Marketing</div>
@@ -1093,7 +1093,7 @@ footer {
       <p>Campaign setup for onboarding, promotions, and re-engagement. Sequences that nurture leads and drive repeat business.</p>
       <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
-    <div class="expertise-card" data-modal="5" style="--note-color:#f5e642;--rot:-1.5deg">
+    <div class="expertise-card" onclick="openModal(5)" style="--note-color:#f5e642;--rot:-1.5deg">
       <div class="pushpin"></div>
       <div class="exp-icon">📅</div>
       <div class="exp-num">05 — Booking</div>
@@ -1101,7 +1101,7 @@ footer {
       <p>Appointment booking integrated with automated reminders and follow-ups — so no lead falls through the cracks.</p>
       <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
-    <div class="expertise-card" data-modal="6" style="--note-color:#b8d4ee;--rot:0.5deg">
+    <div class="expertise-card" onclick="openModal(6)" style="--note-color:#b8d4ee;--rot:0.5deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#6699dd,#334488)"></div>
       <div class="exp-icon">🔗</div>
       <div class="exp-num">06 — Integrations</div>
@@ -1321,10 +1321,8 @@ window.addEventListener('scroll', function() {
   });
 })();
 
-// ─── Animate sections in ───
 // ─── Expertise Modals ───
-(function() {
-  var data = {
+var _modalData = {
     1: {
       num: '01',
       title: 'Funnel & Website Creation',
@@ -1419,66 +1417,53 @@ window.addEventListener('scroll', function() {
       outcomeLabel: 'The result',
       outcome: '<strong>One ecosystem, zero data silos.</strong> Every tool you use talks to GHL, so leads, data, and automations flow seamlessly without manual imports, copy-pasting, or dropped information.'
     }
-  };
+};
 
-  var backdrop = document.getElementById('modalBackdrop');
-  var modalBody = document.getElementById('modalBody');
-  var closeBtn = document.getElementById('modalClose');
+var _modalNoteColors = { 1:'#f5e642', 2:'#b8d4ee', 3:'#f0b8c8', 4:'#c8e6c4', 5:'#f5e642', 6:'#b8d4ee' };
+var _modalPinColors  = {
+  1:'radial-gradient(circle at 35% 35%,#ff6644,#aa2200)',
+  2:'radial-gradient(circle at 35% 35%,#6699dd,#334488)',
+  3:'radial-gradient(circle at 35% 35%,#cc6688,#882244)',
+  4:'radial-gradient(circle at 35% 35%,#66bb66,#224422)',
+  5:'radial-gradient(circle at 35% 35%,#ff6644,#aa2200)',
+  6:'radial-gradient(circle at 35% 35%,#6699dd,#334488)'
+};
 
-  // Note colors matching each card
-  var noteColors = { 1:'#f5e642', 2:'#b8d4ee', 3:'#f0b8c8', 4:'#c8e6c4', 5:'#f5e642', 6:'#b8d4ee' };
-  var pinColors  = {
-    1:'radial-gradient(circle at 35% 35%,#ff6644,#aa2200)',
-    2:'radial-gradient(circle at 35% 35%,#6699dd,#334488)',
-    3:'radial-gradient(circle at 35% 35%,#cc6688,#882244)',
-    4:'radial-gradient(circle at 35% 35%,#66bb66,#224422)',
-    5:'radial-gradient(circle at 35% 35%,#ff6644,#aa2200)',
-    6:'radial-gradient(circle at 35% 35%,#6699dd,#334488)'
-  };
-
+function openModal(id) {
+  var d = _modalData[id];
+  if (!d) return;
   var modal = document.getElementById('modal');
   var modalPin = document.getElementById('modalPin');
+  var modalBody = document.getElementById('modalBody');
+  var backdrop = document.getElementById('modalBackdrop');
+  modal.style.background = _modalNoteColors[id] || '#f5e642';
+  modalPin.style.background = _modalPinColors[id] || _modalPinColors[1];
+  var whatsHtml = d.what.map(function(w) { return '<li>' + w + '</li>'; }).join('');
+  modalBody.innerHTML =
+    '<div class="modal-num">' + d.num + '</div>' +
+    '<h2>' + d.title + '</h2>' +
+    '<p class="modal-tagline">' + d.tagline + '</p>' +
+    '<div class="modal-section-title">' + d.whatLabel + '</div>' +
+    '<ul class="modal-list">' + whatsHtml + '</ul>' +
+    '<div class="modal-section-title">' + d.outcomeLabel + '</div>' +
+    '<div class="modal-outcome"><p>' + d.outcome + '</p></div>' +
+    '<button class="modal-cta" onclick="openCalendlyModal()">Work with me on this →</button>';
+  backdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-  function openModal(id) {
-    var d = data[id];
-    if (!d) return;
-    // Match note color to the clicked card
-    modal.style.setProperty('--modal-color', noteColors[id] || '#f5e642');
-    modal.style.background = noteColors[id] || '#f5e642';
-    modalPin.style.background = pinColors[id] || pinColors[1];
-    var whatsHtml = d.what.map(function(w) { return '<li>' + w + '</li>'; }).join('');
-    modalBody.innerHTML =
-      '<div class="modal-num">' + d.num + '</div>' +
-      '<h2>' + d.title + '</h2>' +
-      '<p class="modal-tagline">' + d.tagline + '</p>' +
-      '<div class="modal-section-title">' + d.whatLabel + '</div>' +
-      '<ul class="modal-list">' + whatsHtml + '</ul>' +
-      '<div class="modal-section-title">' + d.outcomeLabel + '</div>' +
-      '<div class="modal-outcome"><p>' + d.outcome + '</p></div>' +
-      '<button class="modal-cta" onclick="openCalendlyModal()">Work with me on this →</button>';
-    backdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-  function closeModal() {
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.expertise-card').forEach(function(card) {
-    card.addEventListener('click', function(e) {
-      openModal(card.dataset.modal);
-    });
-  });
-
-  closeBtn.addEventListener('click', closeModal);
-  backdrop.addEventListener('click', function(e) {
-    if (e.target === backdrop) closeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
-})();
+document.getElementById('modalClose').onclick = closeModal;
+document.getElementById('modalBackdrop').onclick = function(e) {
+  if (e.target === this) closeModal();
+};
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeModal(); closeCalendlyModal(); }
+});
 
 gsap.fromTo('.accordion-panel', { opacity: 0, y: 20 }, {
   opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
