@@ -1245,6 +1245,7 @@ window.addEventListener('scroll', function() {
 
 // ─── Marquee (scroll-reactive) ───
 (function() {
+  if (!document.getElementById('mRow1')) return;
   var rows = [
     { row: document.getElementById('mRow1'), content: document.getElementById('mContent1'), dir: -1, speed: 1 },
     { row: document.getElementById('mRow2'), content: document.getElementById('mContent2'), dir: 1, speed: 0.7 }
