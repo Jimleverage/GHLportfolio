@@ -1122,14 +1122,14 @@ footer {
 </div>
 
 <!-- CALENDLY MODAL -->
-<div class="modal-backdrop" id="calendlyBackdrop">
+<div class="modal-backdrop" id="calendlyBackdrop" onclick="if(event.target===this)closeCalendlyModal()">
   <div class="modal" id="calendlyModal" style="background:#f5e642;max-width:680px;width:100%;padding:52px 24px 28px;" role="dialog" aria-modal="true">
     <div class="modal-pin" style="background:radial-gradient(circle at 35% 35%,#ff6644,#aa2200)"></div>
-    <button class="modal-close" id="calendlyClose" aria-label="Close">✕</button>
+    <button class="modal-close" onclick="closeCalendlyModal()" aria-label="Close" style="position:absolute;top:12px;right:14px;z-index:999;">✕</button>
     <div class="modal-num">Book a Call</div>
     <h2 style="font-family:'Caveat',cursive;font-size:clamp(24px,4vw,34px);color:#1a1714;margin-bottom:16px;">Let's talk about your project</h2>
     <p style="font-size:13px;color:rgba(26,24,22,0.62);margin-bottom:16px;padding-bottom:16px;border-bottom:1.5px dashed rgba(26,24,22,0.22);">Pick a time that works for you — 30 minutes, no pressure.</p>
-    <div style="border-radius:4px;overflow:hidden;height:520px;box-shadow:0 2px 12px rgba(0,0,0,0.15);">
+    <div style="border-radius:4px;overflow:hidden;height:520px;box-shadow:0 2px 12px rgba(0,0,0,0.15);position:relative;">
       <iframe src="https://calendly.com/jimuel-pasion-pararuan/30min?embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1" width="100%" height="100%" frameborder="0" title="Schedule a call"></iframe>
     </div>
   </div>
@@ -1506,10 +1506,8 @@ function closeCalendlyModal() {
   document.getElementById('calendlyBackdrop').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.getElementById('openCalendly').addEventListener('click', openCalendlyModal);
-document.getElementById('calendlyClose').addEventListener('click', closeCalendlyModal);
-document.getElementById('calendlyBackdrop').addEventListener('click', function(e) {
-  if (e.target === this) closeCalendlyModal();
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeCalendlyModal();
 });
 </script>
 </body>
