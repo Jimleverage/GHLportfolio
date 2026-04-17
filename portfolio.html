@@ -380,14 +380,17 @@ nav.scrolled {
   border: 1px solid rgba(26,24,22,0.12);
 }
 .funnel-cta {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 12px; font-family: 'Caveat', cursive;
-  font-size: 15px; font-weight: 700;
-  color: #cc2200; text-decoration: none;
-  opacity: 0; transform: translateY(4px);
-  transition: opacity 0.25s, transform 0.25s;
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 12px; font-family: 'Outfit', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff; text-decoration: none;
+  background: #cc2200;
+  padding: 9px 20px; border-radius: 4px;
+  box-shadow: 0 3px 12px rgba(204,34,0,0.35);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.funnel-card:hover .funnel-cta { opacity: 1; transform: translateY(0); }
+.funnel-cta:hover { background: #aa1a00; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(204,34,0,0.45); }
 
 @media (max-width: 900px) { .funnel-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
 
@@ -980,7 +983,7 @@ footer {
         <span class="funnel-tag">Order System</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">View Funnel →</span>
       </div>
     </a>
 
@@ -1001,7 +1004,7 @@ footer {
         <span class="funnel-tag">Follow-up System</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">View Funnel →</span>
       </div>
     </a>
 
@@ -1022,7 +1025,7 @@ footer {
         <span class="funnel-tag">Email Automation</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">View Funnel →</span>
       </div>
     </a>
 
@@ -1043,7 +1046,7 @@ footer {
         <span class="funnel-tag">Lead Nurturing</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">View Funnel →</span>
       </div>
     </a>
 
@@ -1064,7 +1067,7 @@ footer {
         <span class="funnel-tag">CRM Stages</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">View Funnel →</span>
       </div>
     </a>
 
@@ -1085,7 +1088,7 @@ footer {
         <span class="funnel-tag">Service Funnel</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">View Funnel →</span>
       </div>
     </a>
 
