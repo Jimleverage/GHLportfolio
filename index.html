@@ -380,14 +380,18 @@ nav.scrolled {
   border: 1px solid rgba(26,24,22,0.12);
 }
 .funnel-cta {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 12px; font-family: 'Caveat', cursive;
-  font-size: 15px; font-weight: 700;
-  color: #cc2200; text-decoration: none;
-  opacity: 0; transform: translateY(4px);
-  transition: opacity 0.25s, transform 0.25s;
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 14px; font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff; text-decoration: none;
+  background: #cc2200;
+  padding: 13px 28px; border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(204,34,0,0.4);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  width: 100%; justify-content: center;
 }
-.funnel-card:hover .funnel-cta { opacity: 1; transform: translateY(0); }
+.funnel-cta:hover { background: #aa1a00; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(204,34,0,0.5); }
 
 @media (max-width: 900px) { .funnel-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
 
@@ -964,6 +968,69 @@ footer {
   <div class="funnel-grid">
 
     <!-- Card 1 -->
+    <a class="funnel-card" href="https://leverageph.site/orange-2501" target="_blank" rel="noopener" style="--frot:2deg">
+      <div class="funnel-frame">
+        <div class="funnel-tape"></div>
+        <div class="funnel-screenshot" style="background:linear-gradient(135deg,#1a0a00,#4a2000);display:flex;align-items:center;justify-content:center;font-size:52px;">🍊</div>
+        <div class="funnel-caption">
+          <div class="funnel-industry">Food &amp; Beverage · Product</div>
+          <div class="funnel-name">Grove Cold-Pressed OJ</div>
+        </div>
+      </div>
+      <div class="funnel-tags">
+        <span class="funnel-tag">Product Funnel</span>
+        <span class="funnel-tag">Video Hero</span>
+        <span class="funnel-tag">Frame Sequence</span>
+        <span class="funnel-tag">Order System</span>
+      </div>
+      <div style="text-align:center">
+        <span class="funnel-cta">🌐 Visit Live Site →</span>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a class="funnel-card" href="https://leverageph.site/ja" target="_blank" rel="noopener" style="--frot:-1.5deg">
+      <div class="funnel-frame">
+        <div class="funnel-tape"></div>
+        <div class="funnel-screenshot" style="background:linear-gradient(135deg,#001a2e,#003a6e);display:flex;align-items:center;justify-content:center;font-size:52px;">💼</div>
+        <div class="funnel-caption">
+          <div class="funnel-industry">Business · Service</div>
+          <div class="funnel-name">JA Page</div>
+        </div>
+      </div>
+      <div class="funnel-tags">
+        <span class="funnel-tag">Lead Capture</span>
+        <span class="funnel-tag">CRM Pipeline</span>
+        <span class="funnel-tag">Automation</span>
+        <span class="funnel-tag">Follow-up System</span>
+      </div>
+      <div style="text-align:center">
+        <span class="funnel-cta">🌐 Visit Live Site →</span>
+      </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a class="funnel-card" href="https://leverageph.site/movers" target="_blank" rel="noopener" style="--frot:1deg">
+      <div class="funnel-frame">
+        <div class="funnel-tape"></div>
+        <div class="funnel-screenshot" style="background:linear-gradient(135deg,#0a1a0a,#1a3a1a);display:flex;align-items:center;justify-content:center;font-size:52px;">🚛</div>
+        <div class="funnel-caption">
+          <div class="funnel-industry">Moving &amp; Relocation · Service</div>
+          <div class="funnel-name">Movers Page</div>
+        </div>
+      </div>
+      <div class="funnel-tags">
+        <span class="funnel-tag">Service Funnel</span>
+        <span class="funnel-tag">Booking System</span>
+        <span class="funnel-tag">Lead Generation</span>
+        <span class="funnel-tag">Email Automation</span>
+      </div>
+      <div style="text-align:center">
+        <span class="funnel-cta">🌐 Visit Live Site →</span>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
     <a class="funnel-card" href="https://jimleverage.github.io/toniandguy-bahrain/" target="_blank" rel="noopener" style="--frot:-2deg">
       <div class="funnel-frame">
         <div class="funnel-tape"></div>
@@ -980,11 +1047,11 @@ footer {
         <span class="funnel-tag">Lead Nurturing</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">🌐 Visit Live Site →</span>
       </div>
     </a>
 
-    <!-- Card 2 -->
+    <!-- Card 5 -->
     <a class="funnel-card" href="https://jimleverage.github.io/petland-bahrain/" target="_blank" rel="noopener" style="--frot:1.5deg">
       <div class="funnel-frame">
         <div class="funnel-tape"></div>
@@ -1001,11 +1068,11 @@ footer {
         <span class="funnel-tag">CRM Stages</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">🌐 Visit Live Site →</span>
       </div>
     </a>
 
-    <!-- Card 3 -->
+    <!-- Card 6 -->
     <a class="funnel-card" href="https://jimleverage.github.io/Topaz-Detailing/" target="_blank" rel="noopener" style="--frot:-1deg">
       <div class="funnel-frame">
         <div class="funnel-tape"></div>
@@ -1022,7 +1089,7 @@ footer {
         <span class="funnel-tag">Service Funnel</span>
       </div>
       <div style="text-align:center">
-        <span class="funnel-cta">View Live Site →</span>
+        <span class="funnel-cta">🌐 Visit Live Site →</span>
       </div>
     </a>
 
@@ -1067,7 +1134,7 @@ footer {
       <div class="exp-num">01 — Funnels</div>
       <h3>Funnel &amp; Website Creation</h3>
       <p>Landing pages, multi-step funnels, and full websites built inside GHL — designed for conversion at every stage of the customer journey.</p>
-      <button class="exp-btn" onclick="event.stopPropagation();openModal(1)">View Details <span class="btn-arrow">→</span></button>
+      <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
     <div class="expertise-card" onclick="openModal(2)" style="--note-color:#b8d4ee;--rot:1.5deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#6699dd,#334488)"></div>
@@ -1075,7 +1142,7 @@ footer {
       <div class="exp-num">02 — CRM</div>
       <h3>CRM Pipeline Setup</h3>
       <p>Lead stages, opportunity tracking, and contact segmentation. Structured pipelines that give you full visibility over every deal.</p>
-      <button class="exp-btn" onclick="event.stopPropagation();openModal(2)">View Details <span class="btn-arrow">→</span></button>
+      <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
     <div class="expertise-card" onclick="openModal(3)" style="--note-color:#f0b8c8;--rot:-1deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#cc6688,#882244)"></div>
@@ -1083,7 +1150,7 @@ footer {
       <div class="exp-num">03 — Automation</div>
       <h3>Workflow Automation</h3>
       <p>Triggers, conditions, If/Else logic — fully automated follow-up systems that reduce manual work and keep leads moving forward.</p>
-      <button class="exp-btn" onclick="event.stopPropagation();openModal(3)">View Details <span class="btn-arrow">→</span></button>
+      <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
     <div class="expertise-card" onclick="openModal(4)" style="--note-color:#c8e6c4;--rot:2deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#66bb66,#224422)"></div>
@@ -1091,7 +1158,7 @@ footer {
       <div class="exp-num">04 — Marketing</div>
       <h3>Email &amp; SMS Marketing</h3>
       <p>Campaign setup for onboarding, promotions, and re-engagement. Sequences that nurture leads and drive repeat business.</p>
-      <button class="exp-btn" onclick="event.stopPropagation();openModal(4)">View Details <span class="btn-arrow">→</span></button>
+      <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
     <div class="expertise-card" onclick="openModal(5)" style="--note-color:#f5e642;--rot:-1.5deg">
       <div class="pushpin"></div>
@@ -1099,7 +1166,7 @@ footer {
       <div class="exp-num">05 — Booking</div>
       <h3>Calendar &amp; Booking Automation</h3>
       <p>Appointment booking integrated with automated reminders and follow-ups — so no lead falls through the cracks.</p>
-      <button class="exp-btn" onclick="event.stopPropagation();openModal(5)">View Details <span class="btn-arrow">→</span></button>
+      <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
     <div class="expertise-card" onclick="openModal(6)" style="--note-color:#b8d4ee;--rot:0.5deg">
       <div class="pushpin" style="background:radial-gradient(circle at 35% 35%,#6699dd,#334488)"></div>
@@ -1107,7 +1174,7 @@ footer {
       <div class="exp-num">06 — Integrations</div>
       <h3>Integration &amp; API Setup</h3>
       <p>Zapier, webhooks, and API connections linking GHL to third-party tools — building a connected, scalable marketing stack.</p>
-      <button class="exp-btn" onclick="event.stopPropagation();openModal(6)">View Details <span class="btn-arrow">→</span></button>
+      <button class="exp-btn">View Details <span class="btn-arrow">→</span></button>
     </div>
   </div>
 </section>
@@ -1245,7 +1312,6 @@ window.addEventListener('scroll', function() {
 
 // ─── Marquee (scroll-reactive) ───
 (function() {
-  if (!document.getElementById('mRow1')) return;
   var rows = [
     { row: document.getElementById('mRow1'), content: document.getElementById('mContent1'), dir: -1, speed: 1 },
     { row: document.getElementById('mRow2'), content: document.getElementById('mContent2'), dir: 1, speed: 0.7 }
@@ -1430,7 +1496,7 @@ var _modalPinColors  = {
   6:'radial-gradient(circle at 35% 35%,#6699dd,#334488)'
 };
 
-window.openModal = function openModal(id) {
+function openModal(id) {
   var d = _modalData[id];
   if (!d) return;
   var modal = document.getElementById('modal');
